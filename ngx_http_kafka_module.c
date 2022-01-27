@@ -545,3 +545,14 @@ void ngx_str_helper(ngx_str_t *str, ngx_str_op op)
             ngx_abort();
     }
 }
+
+/* caller should call ngx_free */
+char *
+ngx_str_dup_helper(ngx_str_t *str, ngx_log_t *log)
+{
+    char *dup = ngx_calloc(str->len + 1, log);
+    if (!dup)
+        return NULL;
+    ngx_memcpy(dup, str->data, str->len);
+    return dup;
+}
