@@ -49,6 +49,8 @@ script:
   - ./config shared --prefix=$OPENSSL_PREFIX -DPURIFY > build.log 2>&1 || (cat build.log && exit 1)
   - make -j$JOBS > build.log 2>&1 || (cat build.log && exit 1)
   - sudo make PATH=$PATH install_sw > build.log 2>&1 || (cat build.log && exit 1)
+  - echo $LD_LIBRARY_PATH
+  - export LD_LIBRARY_PATH=$OPENSSL_LIB:$LD_LIBRARY_PATH
   - cd ..
   - cd download-cache/librdkafka/
   - ./configure --prefix=$LIBRDKAFKA_PREFIX --CFLAGS=-I$OPENSSL_INC --LDFLAGS=-L$OPENSSL_LIB > build.log 2>&1 || (cat build.log && exit 1)
