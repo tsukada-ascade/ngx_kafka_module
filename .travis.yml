@@ -23,7 +23,7 @@ env:
     - OPENSSL_PREFIX=/opt/ssl
     - OPENSSL_LIB=$OPENSSL_PREFIX/lib
     - OPENSSL_INC=$OPENSSL_PREFIX/include
-    - OPENSSL_VER=1.0.2h
+    - OPENSSL_VER=1.1.1m
     - LIBRDKAFKA_PREFIX=/opt/librdkafka
     - LIBRDKAFKA_INC=$LIBRDKAFKA_PREFIX/include
     - LIBRDKAFKA_LIB=$LIBRDKAFKA_PREFIX/lib
@@ -44,6 +44,7 @@ install:
   - git clone https://github.com/openresty/test-nginx.git
 
 script:
+  - ldconfig -p
   - cd test-nginx/ && sudo cpanm . && cd ..
   - tar zxf download-cache/openssl-$OPENSSL_VER.tar.gz
   - cd openssl-$OPENSSL_VER/
