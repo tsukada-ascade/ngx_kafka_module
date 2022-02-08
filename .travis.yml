@@ -43,7 +43,6 @@ install:
   - git clone https://github.com/openresty/test-nginx.git
 
 script:
-  - ldconfig -p
   - cd test-nginx/ && sudo cpanm . && cd ..
   - tar zxf download-cache/openssl-$OPENSSL_VER.tar.gz
   - cd openssl-$OPENSSL_VER/
@@ -52,7 +51,7 @@ script:
   - sudo make PATH=$PATH install_sw > build.log 2>&1 || (cat build.log && exit 1)
   - cd ..
   - cd download-cache/librdkafka/
-  - ./configure --prefix=$LIBRDKAFKA_PREFIX --CFLAGS=-I$OPENSSL_INC > build.log 2>&1 || (cat build.log && exit 1)
+  - ./configure --prefix=$LIBRDKAFKA_PREFIX --CFLAGS=-I$OPENSSL_INC --LDFLAGS=-L$OPENSSL_LIB > build.log 2>&1 || (cat build.log && exit 1)
   - make -j$JOBS > build.log 2>&1 || (cat build.log && exit 1)
   - sudo make install > build.log 2>&1 || (cat build.log && exit 1)
   - cd ../..
