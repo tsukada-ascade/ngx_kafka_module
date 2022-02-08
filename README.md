@@ -1,7 +1,7 @@
 Nginx Kafka Module
 ====
 
-[![Build Status](https://travis-ci.org/brg-liuwei/ngx_kafka_module.svg?branch=master)](https://travis-ci.org/brg-liuwei/ngx_kafka_module)
+[![Build Status](https://app.travis-ci.com/tsukada-ascade/ngx_kafka_module.svg?branch=feature%2Fconfigurable-message-max-bytes)](https://app.travis-ci.com/tsukada-ascade/ngx_kafka_module)
 
 Nginx kafka module is used to receive http post data and deliver messages to [kafka](http://kafka.apache.org/)
 
