@@ -32,6 +32,7 @@ env:
 
 before_install:
   - sudo apt-get install -qq -y cpanminus
+  - sudo apt install -qq -y libssl-dev
 
 install:
   - if [ ! -d /opt ]; then mkdir /opt; fi
@@ -39,7 +40,7 @@ install:
   - if [ ! -d download-cache/librdkafka ]; then git clone -b $LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git download-cache/librdkafka; fi
   - if [ ! -f download-cache/nginx-$NGINX_VERSION.tar.gz ]; then wget -O download-cache/nginx-$NGINX_VERSION.tar.gz http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz; fi
   - if [ ! -f download-cache/openssl-$OPENSSL_VER.tar.gz ]; then wget --no-check-certificate -O download-cache/openssl-$OPENSSL_VER.tar.gz https://www.openssl.org/source/openssl-$OPENSSL_VER.tar.gz; fi
-  - if [ ! -f download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz ]; then wget --no-check-certificate -O download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz https://www.apache.org/dyn/closer.cgi?path=/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION; fi
+  - if [ ! -f download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz ]; then wget --no-check-certificate -O download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz https://dlcdn.apache.org/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz; fi
   - git clone https://github.com/openresty/test-nginx.git
 
 script:
