@@ -23,7 +23,7 @@ env:
     - OPENSSL_PREFIX=/opt/ssl
     - OPENSSL_LIB=$OPENSSL_PREFIX/lib
     - OPENSSL_INC=$OPENSSL_PREFIX/include
-    - OPENSSL_VER=1.1.1m
+    - OPENSSL_VER=3.0.1
     - LIBRDKAFKA_PREFIX=/opt/librdkafka
     - LIBRDKAFKA_INC=$LIBRDKAFKA_PREFIX/include
     - LIBRDKAFKA_LIB=$LIBRDKAFKA_PREFIX/lib
@@ -32,7 +32,6 @@ env:
 
 before_install:
   - sudo apt-get install -qq -y cpanminus
-  - sudo apt install -qq -y libssl-dev
 
 install:
   - if [ ! -d /opt ]; then mkdir /opt; fi
