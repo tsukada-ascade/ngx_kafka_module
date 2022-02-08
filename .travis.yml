@@ -17,7 +17,8 @@ cache:
 env:
   global:
     - JOBS=4
-    - NGINX_VERSION=1.10.1
+    - LIBRDKAFKA_VERSION=v1.8.2
+    - NGINX_VERSION=1.21.5
     - NGINX_PREFIX=/opt/nginx
     - OPENSSL_PREFIX=/opt/ssl
     - OPENSSL_LIB=$OPENSSL_PREFIX/lib
@@ -35,9 +36,9 @@ before_install:
 install:
   - if [ ! -d /opt ]; then mkdir /opt; fi
   - if [ ! -d download-cache ]; then mkdir download-cache; fi
-  - if [ ! -d download-cache/librdkafka ]; then git clone -b v0.11.0 https://github.com/edenhill/librdkafka.git download-cache/librdkafka; fi
+  - if [ ! -d download-cache/librdkafka ]; then git clone -b $LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git download-cache/librdkafka; fi
   - if [ ! -f download-cache/nginx-$NGINX_VERSION.tar.gz ]; then wget -O download-cache/nginx-$NGINX_VERSION.tar.gz http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz; fi
-  - if [ ! -f download-cache/openssl-$OPENSSL_VER.tar.gz ]; then wget -O download-cache/openssl-$OPENSSL_VER.tar.gz https://www.openssl.org/source/openssl-$OPENSSL_VER.tar.gz; fi
+  - if [ ! -f download-cache/openssl-$OPENSSL_VER.tar.gz ]; then wget --no-check-certificate -O download-cache/openssl-$OPENSSL_VER.tar.gz https://www.openssl.org/source/openssl-$OPENSSL_VER.tar.gz; fi
   - if [ ! -f download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz ]; then wget -O download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz http://www-us.apache.org/dist/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz; fi
   - git clone https://github.com/openresty/test-nginx.git
 
