@@ -27,8 +27,8 @@ env:
     - LIBRDKAFKA_PREFIX=/opt/librdkafka
     - LIBRDKAFKA_INC=$LIBRDKAFKA_PREFIX/include
     - LIBRDKAFKA_LIB=$LIBRDKAFKA_PREFIX/lib
-    - KAFKA_VERSION=0.10.0.1
-    - SCALA_VERSION=2.11
+    - KAFKA_VERSION=3.1.0
+    - SCALA_VERSION=2.13
 
 before_install:
   - sudo apt-get install -qq -y cpanminus
@@ -39,7 +39,7 @@ install:
   - if [ ! -d download-cache/librdkafka ]; then git clone -b $LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git download-cache/librdkafka; fi
   - if [ ! -f download-cache/nginx-$NGINX_VERSION.tar.gz ]; then wget -O download-cache/nginx-$NGINX_VERSION.tar.gz http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz; fi
   - if [ ! -f download-cache/openssl-$OPENSSL_VER.tar.gz ]; then wget --no-check-certificate -O download-cache/openssl-$OPENSSL_VER.tar.gz https://www.openssl.org/source/openssl-$OPENSSL_VER.tar.gz; fi
-  - if [ ! -f download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz ]; then wget -O download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz http://www-us.apache.org/dist/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz; fi
+  - if [ ! -f download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz ]; then wget -O download-cache/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz https://www.apache.org/dyn/closer.cgi?path=/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION; fi
   - git clone https://github.com/openresty/test-nginx.git
 
 script:
