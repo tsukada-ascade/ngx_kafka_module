@@ -28,7 +28,7 @@ __DATA__
 --- http_config
     kafka;
     kafka_broker_list 127.0.0.1:9092;
-    kafka_message_max_bytes 2m;
+    kafka_message_max_bytes 2097152;
 --- config
     location /t {
         client_body_buffer_size 2m;
